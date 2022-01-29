@@ -17,7 +17,7 @@ Published schematic includes probably a final version, slightly improved over wh
 
 License:
 * Software is released under MIT license
-* Hardware is released under Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License
+* Hardware design is released under Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License
 
 > This repo contains complete documentation. If you are interested in building this device and need more details, please let me know rising an issue on GitHub.  
 
