@@ -1,0 +1,78 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# Jumper-2A
+#
+DEF Jumper-2A J 0 40 N Y 1 F N
+F0 "J" 0 150 50 H V C CNN
+F1 "Jumper-2A" 0 -150 50 H V C CNN
+F2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" 0 -250 50 H I C CNN
+F3 "" -50 0 50 H I C CNN
+DRAW
+C 0 -50 14 0 1 0 N
+C 0 50 14 0 1 0 N
+S -50 100 50 -100 0 1 0 f
+P 2 0 1 0 -50 -50 -15 -50 N
+P 2 0 1 0 -50 50 -15 50 N
+P 2 0 1 0 0 25 0 -25 N
+X ~ 1 -100 50 50 R 50 50 1 1 P
+X ~ 2 -100 -50 50 R 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# Jumper-2A-Open
+#
+DEF Jumper-2A-Open J 0 40 N Y 1 F N
+F0 "J" 0 150 50 H V C CNN
+F1 "Jumper-2A-Open" 0 -150 50 H V C CNN
+F2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" 200 -250 50 H I C CNN
+F3 "" -50 0 50 H I C CNN
+DRAW
+C 0 -50 14 0 1 0 N
+C 0 50 14 0 1 0 N
+S -50 100 50 -100 0 1 0 f
+P 2 0 1 0 -50 -50 -15 -50 N
+P 2 0 1 0 -50 50 -15 50 N
+X ~ 1 -100 50 50 R 50 50 1 1 P
+X ~ 2 -100 -50 50 R 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# Jumper-2B
+#
+DEF Jumper-2B J 0 40 N Y 1 F N
+F0 "J" 0 100 50 H V C CNN
+F1 "Jumper-2B" 0 -100 50 H V C CNN
+F2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" 0 -200 50 H I C CNN
+F3 "" 0 -50 50 V I C CNN
+DRAW
+C -50 0 14 0 1 0 N
+C 50 0 14 0 1 0 N
+S -100 -50 100 50 0 1 0 f
+P 2 0 1 0 -65 0 -100 0 N
+P 2 0 1 0 -25 0 25 0 N
+P 2 0 1 0 100 0 65 0 N
+X ~ 1 -150 0 50 R 50 50 1 1 P
+X ~ 2 150 0 50 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# Jumper-2B-Open
+#
+DEF Jumper-2B-Open J 0 40 N Y 1 F N
+F0 "J" 0 100 50 H V C CNN
+F1 "Jumper-2B-Open" 0 -100 50 H V C CNN
+F2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" 50 -200 50 H I C CNN
+F3 "" 0 -50 50 V I C CNN
+DRAW
+C -50 0 14 0 1 0 N
+C 50 0 14 0 1 0 N
+S -100 -50 100 50 0 1 0 f
+P 2 0 1 0 -65 0 -100 0 N
+P 2 0 1 0 100 0 65 0 N
+X ~ 1 -150 0 50 R 50 50 1 1 P
+X ~ 2 150 0 50 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+#End Library

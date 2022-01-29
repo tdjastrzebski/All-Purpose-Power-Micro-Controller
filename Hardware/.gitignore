@@ -1,0 +1,5 @@
+*.vsdx
+*.*-bak
+*.net
+fp-info-cache
+*.bck

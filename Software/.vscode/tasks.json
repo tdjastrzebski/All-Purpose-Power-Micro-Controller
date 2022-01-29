@@ -1,0 +1,168 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-rf", "BUILD"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "Deploy (ST-Link)",
+            "type": "shell",
+            "command": "st-link_cli",
+            "args": [
+                "-P",
+                "${workspaceRoot}/BUILD/debug/${workspaceRootFolderName}.bin",
+                "0x08000000",
+                "-V",
+                "-HardRst"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            },
+        },
+        {
+            "label": "Deploy (pyOCD debug)",
+            "type": "shell",
+            "command": "pyocd",
+            "args": [
+                "flash",
+                "${workspaceRoot}/BUILD/debug/${workspaceRootFolderName}.bin",
+                "--base-address",
+                "0x08000000",
+                "--target",
+                "STM32G0B1CEUx"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            },
+        },
+        {
+            "label": "Deploy (pyOCD release)",
+            "type": "shell",
+            "command": "pyocd",
+            "args": [
+                "flash",
+                "${workspaceRoot}/BUILD/release/${workspaceRootFolderName}.bin",
+                "--base-address",
+                "0x08000000",
+                "--target",
+                "STM32G0B1CEUx"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            },
+        },
+        {
+            "label": "Build & Deploy (debug)",
+            "dependsOn": ["Build (debug)", "Deploy (pyOCD debug)"],
+            "dependsOrder": "sequence",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build (debug)",
+            "type": "shell",
+            "command": "cppbuild",
+            "args": [
+                "gcc",
+                "debug",
+                "-w",
+                "-d"
+            ],
+            "presentation": {
+                "clear": true
+            },
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Build (release)",
+            "type": "shell",
+            "command": "cppbuild",
+            "args": [
+                "gcc",
+                "release",
+                "-w",
+                "-d"
+            ],
+            "presentation": {
+                "clear": true
+            },
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            // Requires: npm install -g @serialport/terminal
+            "label": "Serial terminal COM3",
+            "type": "shell",
+            "command": "serialport-terminal",
+            "args": [
+                "-p",
+                "COM3",
+                "-b",
+                "115200"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            },  
+        },
+    ]
+}

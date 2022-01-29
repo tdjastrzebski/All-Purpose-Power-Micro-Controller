@@ -1,0 +1,12 @@
+/BUILD
+/Debug
+/dump
+/__pycache__
+.cortex-debug.*
+/mbed-os
+/lvgl
+/lv_examples
+debug.log
+.project
+.mxproject
+.cproject

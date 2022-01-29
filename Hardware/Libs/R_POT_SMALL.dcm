@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP R_POT_SMALL
+D Potentiometer
+K resistor variable
+F ~
+$ENDCMP
+#
+#End Doc Library

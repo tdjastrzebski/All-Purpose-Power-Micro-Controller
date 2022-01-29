@@ -1,0 +1,48 @@
+(module R_0805_2012Metric_Pad1.20x1.40mm_HandSolder_Jump (layer F.Cu) (tedit 60A2CCAF)
+  (descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
+  (tags "resistor handsolder")
+  (attr smd)
+  (fp_text reference REF** (at 0 -1.65) (layer F.SilkS)
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (fp_text value R_0805_2012Metric_Pad1.20x1.40mm_HandSolder_Jump (at 0 1.65) (layer F.Fab)
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (fp_line (start -1 0.625) (end -1 -0.625) (layer F.Fab) (width 0.1))
+  (fp_line (start -1 -0.625) (end 1 -0.625) (layer F.Fab) (width 0.1))
+  (fp_line (start 1 -0.625) (end 1 0.625) (layer F.Fab) (width 0.1))
+  (fp_line (start 1 0.625) (end -1 0.625) (layer F.Fab) (width 0.1))
+  (fp_line (start -0.227064 -0.735) (end 0.227064 -0.735) (layer F.SilkS) (width 0.12))
+  (fp_line (start -0.227064 0.735) (end 0.227064 0.735) (layer F.SilkS) (width 0.12))
+  (fp_line (start -1.85 0.95) (end -1.85 -0.95) (layer F.CrtYd) (width 0.05))
+  (fp_line (start -1.85 -0.95) (end 1.85 -0.95) (layer F.CrtYd) (width 0.05))
+  (fp_line (start 1.85 -0.95) (end 1.85 0.95) (layer F.CrtYd) (width 0.05))
+  (fp_line (start 1.85 0.95) (end -1.85 0.95) (layer F.CrtYd) (width 0.05))
+  (fp_poly (pts (xy 0.7 0.7) (xy -0.7 0.7) (xy -0.7 -0.7) (xy 0.7 -0.7)) (layer F.Mask) (width 0))
+  (fp_text user %R (at 0 0) (layer F.Fab)
+    (effects (font (size 0.5 0.5) (thickness 0.08)))
+  )
+  (pad 1 smd custom (at -1 0) (size 1.2 1.4) (layers F.Cu F.Paste F.Mask)
+    (options (clearance outline) (anchor circle))
+    (primitives
+      (gr_poly (pts
+         (xy 1.1 0) (xy 0.465 0.635) (xy 0.465 -0.635)) (width 0.1))
+      (gr_poly (pts
+         (xy 0.4 0.5) (xy -0.4 0.5) (xy -0.4 -0.5) (xy 0.4 -0.5)) (width 0.4))
+    ))
+  (pad 2 smd custom (at 1 0) (size 1.2 1.4) (layers F.Cu F.Paste F.Mask)
+    (options (clearance outline) (anchor circle))
+    (primitives
+      (gr_poly (pts
+         (xy -0.492 0) (xy -1 -0.508) (xy -0.492 -0.508)) (width 0.1))
+      (gr_poly (pts
+         (xy -0.492 0.508) (xy -1 0.508) (xy -0.492 0)) (width 0.1))
+      (gr_poly (pts
+         (xy 0.4 0.5) (xy -0.4 0.5) (xy -0.4 -0.5) (xy 0.4 -0.5)) (width 0.4))
+    ))
+  (model ${KISYS3DMOD}/Resistor_SMD.3dshapes/R_0805_2012Metric.wrl
+    (at (xyz 0 0 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 0 0 0))
+  )
+)
