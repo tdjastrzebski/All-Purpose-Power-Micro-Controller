@@ -21,7 +21,7 @@ Optional support:
 * Two potentiometers for fine-tuning (gain and zero)
 
 The device has been designed to be easily configured - e.g. here as a **Weller WSP80** station/controller powered from a standard 30V/5A bench power supply. I have built this universal controller to test some design concepts and have used it intensively for over a year as a **Weller WSP80** soldering iron controller.  
-Published schematic includes probably a third final version, slightly improved over what is presented on the pictures (2nd version). Controller can be easily configured to work with any NPT/PPT thermistors or thermo-couple.
+Published schematic includes probably a final 3rd version, slightly improved over what is presented on the pictures (2nd version). Controller can be easily configured to work with any NPT/PPT thermistors or thermo-couple.
 
 License:
 * [Software](Software) is released under MIT license
