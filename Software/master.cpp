@@ -361,7 +361,7 @@ void HAL_GPIO_EXTI_Falling_Callback(uint16_t GPIO_Pin) {
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 	// ADC_A (IN0) measured V - temp
 	uint16_t adc = _adcBuffer[0];
-	const float G = 5.0 + (80000.0 / 3160.0);  // V/V gain
+	const float G = 1.0 + (100000.0 / 3440.0);  // V/V gain
 	const float Coef = 0.072285781;            // Ω/°C
 	const float Offset = 20.47139855;          // Ω
 	float uR8 = 1.5 - (adc * 3.0 / (4095.0 * G)) + (1.5 / G);

@@ -17,11 +17,11 @@ Optional support:
 * Opto-isolated serial port (RX/TX)
 * I2C port
 * Two buffered DACs
-* Larger [Waveshare 14747](https://www.waveshare.com/1.5inch-rgb-oled-module.htm) 1.5" 128x128 RGB OLED display
+* Larger [Waveshare 14747](https://www.waveshare.com/1.5inch-rgb-oled-module.htm) 128x128 1.5" RGB OLED display
 * Two potentiometers for fine-tuning (gain and zero)
 
 The device has been designed to be easily configured - e.g. here as a **Weller WSP80** station/controller powered from a standard 30V/5A bench power supply. I have built this universal controller to test some design concepts and have used it intensively for over a year as a **Weller WSP80** soldering iron controller.  
-Published schematic includes probably a final 3rd version, slightly improved over what is presented on the pictures (2nd version). Controller can be easily configured to work with any NPT/PPT thermistors or thermo-couple.
+Published schematic includes probably the final 3rd version, slightly improved over what is presented on the pictures (2nd version). Controller can be easily configured to work with any NPT/PPT thermistor or a thermo-couple.
 
 License:
 * [Software](Software) is released under MIT license
@@ -34,3 +34,4 @@ License:
 ![](Photos/IMG_3573.JPG)  
 ![](Photos/IMG_3571.JPG)  
 ![](Photos/Schematic.png)  
+![](Photos/Wheatstone_Bridge.png)
