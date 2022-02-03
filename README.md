@@ -25,7 +25,7 @@ Published schematic includes probably the final 3rd version, slightly improved o
 
 Language: C/C++
 
-Environment: VS Code or Cube IDE, Cube MX
+Environment: VS Code or Cube IDE, Cube MX (see [VS Code Environment Setup](Software/EnvironmentSetup.md))
 
 License:
 * [Software](Software) is released under MIT license.
