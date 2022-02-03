@@ -20,11 +20,12 @@
 #include "stm32g0xx_hal_adc_ex.h"
 #include "stm32g0xx_hal_tim.h"
 
-#define PWM_FREQUENCY 100          // Hz
+#define PWM_FREQUENCY 50           // Hz
+#define ADC_FREQUENCY 10           // Hz
 #define ADC_ACTIVE_CHANEL_COUNT 2  // number of conversions
 #define TEMP_MIN 200
 #define TEMP_MAX 450
-#define VIN_MIN 22
+#define VIN_MIN 20
 #define VIN_MAX 26
 #define LOOP_DELAY 100    // ms
 #define PERSIST_DELAY 30  // N * LOOP_DELAY
@@ -35,18 +36,27 @@
 #define EEPROM_SIZE (64 * 1024)  // 64k
 #define EEPROM_ADDRESS 0xA0
 
-extern ADC_HandleTypeDef hadc1;
-extern DMA_HandleTypeDef hdma_adc1;
-extern DAC_HandleTypeDef hdac1;
-extern I2C_HandleTypeDef hi2c2;
-extern I2C_HandleTypeDef hi2c3;
-extern SPI_HandleTypeDef hspi2;
-extern TIM_HandleTypeDef htim1;
-extern TIM_HandleTypeDef htim3;
-extern TIM_HandleTypeDef htim6;
-extern UART_HandleTypeDef huart1;
-extern UART_HandleTypeDef huart5;
-extern PCD_HandleTypeDef hpcd_USB_DRD_FS;
+#define H_ADC_TIMER htim6
+#define H_ENC_TIMER htim3
+#define H_PWM_TIMER htim1
+#define H_UART_A huart1
+#define H_UART_B huart5
+#define H_I2C_A hi2c2
+#define H_I2C_B hi2c3
+#define H_SPI hspi2
+#define H_ADC hadc1
+#define H_DAC hdac1
+
+extern ADC_HandleTypeDef H_ADC;
+extern DAC_HandleTypeDef H_DAC;
+extern I2C_HandleTypeDef H_I2C_A;
+extern I2C_HandleTypeDef H_I2C_B;
+extern SPI_HandleTypeDef H_SPI;
+extern TIM_HandleTypeDef H_PWM_TIMER;
+extern TIM_HandleTypeDef H_ENC_TIMER;
+extern TIM_HandleTypeDef H_ADC_TIMER;
+extern UART_HandleTypeDef H_UART_A;
+extern UART_HandleTypeDef H_UART_B;
 
 extern lv_font_t liberation_mono;
 
@@ -84,25 +94,22 @@ void Init() {}
 
 void PostInit(void) {
 	// calibrate ADC before start
-	if (HAL_ADCEx_Calibration_Start(&hadc1) != HAL_OK) {
+	if (HAL_ADCEx_Calibration_Start(&H_ADC) != HAL_OK) {
 		Error_Handler();
 	}
 
 	// start ADC in DMA mode and declare the buffer where store the results
 	// note: Length param is a number of conversions, not bytes as incorrectly stated in HAL_ADC_Start_DMA() function docs
-	// if (HAL_ADC_Start_IT(&hadc1)!= HAL_OK) {
-	// 	Error_Handler();
-	// }
-	if (HAL_ADC_Start_DMA(&hadc1, (uint32_t*)_adcBuffer, ADC_ACTIVE_CHANEL_COUNT) != HAL_OK) {
+	if (HAL_ADC_Start_DMA(&H_ADC, (uint32_t*)_adcBuffer, ADC_ACTIVE_CHANEL_COUNT) != HAL_OK) {
 		Error_Handler();
 	}
 
 	// set PWM timer Period and frequency (ARR autoreload registry)
-	uint16_t prescaler = htim1.Instance->PSC + 1;
+	uint16_t prescaler = H_PWM_TIMER.Instance->PSC + 1;
 	uint32_t timerClockFrequency = TIMERS_CLOCK_FREQ / prescaler;
 	_pwmCounterPeriod = (timerClockFrequency / PWM_FREQUENCY);
-	__HAL_TIM_SET_AUTORELOAD(&htim1, _pwmCounterPeriod - 1);          // set ARR: counter period (autoreload) registry
-	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, _pwmCounterPeriod);  // set CCR1: capture compare registry
+	__HAL_TIM_SET_AUTORELOAD(&H_PWM_TIMER, _pwmCounterPeriod - 1);          // set ARR: counter period (autoreload) registry
+	__HAL_TIM_SET_COMPARE(&H_PWM_TIMER, TIM_CHANNEL_2, _pwmCounterPeriod);  // set CCR1: capture compare registry
 
 	// initialize OLED display
 	OLED_Init();
@@ -124,7 +131,7 @@ void PostInit(void) {
 	uint16_t persistedValue;
 	while (true) {
 		// find the first non-zero value in EEPROM memory range
-		EEPROM24CW_ReadBytes(&hi2c2, EEPROM_ADDRESS, _storageAddress, (uint8_t*)&persistedValue, 2);  // note: do not care about endianness as long as it is consistent
+		EEPROM24CW_ReadBytes(&H_I2C_A, EEPROM_ADDRESS, _storageAddress, (uint8_t*)&persistedValue, 2);  // note: do not care about endianness as long as it is consistent
 		if (persistedValue != 0) {
 			// non-zero value found
 			if (persistedValue > TEMP_MAX || persistedValue < TEMP_MIN) persistedValue = TEMP_MIN;
@@ -139,10 +146,17 @@ void PostInit(void) {
 		}
 	};
 
-	__HAL_TIM_SET_COUNTER(&htim1, _tempSetCurrent);
-	// start 1Hz ADC trigger
+	// pre-set encoder counter
+	__HAL_TIM_SET_COUNTER(&H_ENC_TIMER, _tempSetCurrent);
+
+	// set ADC timer frequency (ARR autoreload registry)
+	prescaler = H_ADC_TIMER.Instance->PSC + 1;
+	timerClockFrequency = TIMERS_CLOCK_FREQ / prescaler;
+	uint16_t CounterPeriod = (timerClockFrequency / ADC_FREQUENCY);
+	__HAL_TIM_SET_AUTORELOAD(&H_ADC_TIMER, CounterPeriod - 1);  // set ARR: counter period (autoreload) registry
+	// start ADC trigger
 	// note: no need to start this timer in interrupt mode
-	if (HAL_TIM_Base_Start(&htim6) != HAL_OK) {
+	if (HAL_TIM_Base_Start(&H_ADC_TIMER) != HAL_OK) {
 		Error_Handler();
 	}
 }
@@ -206,19 +220,19 @@ void MainLoop(void) {
 			int16_t tempDiff = _tempSetCurrent - _tempCurrent;
 
 			if (tempDiff <= 2) {
-				__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);  // set duty cycle to 0%
+				__HAL_TIM_SET_COMPARE(&H_PWM_TIMER, TIM_CHANNEL_2, 0);  // set duty cycle to 0%
 				blinkPattern = BLINK_PATTERN_SLOW;
 			} else if (tempDiff <= 20) {
-				__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, round(_pwmCounterPeriod * 0.4));  // set duty cycle 40%
+				__HAL_TIM_SET_COMPARE(&H_PWM_TIMER, TIM_CHANNEL_2, round(_pwmCounterPeriod * 0.3));  // set duty cycle 30%
 				blinkPattern = BLINK_PATTERN_FAST;
 			} else {
-				__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, _pwmCounterPeriod);  // set duty cycle 100%
+				__HAL_TIM_SET_COMPARE(&H_PWM_TIMER, TIM_CHANNEL_2, _pwmCounterPeriod);  // set duty cycle 100%
 				blinkPattern = BLINK_PATTERN_FAST;
 			}
 		}
 	} else {
 		// PWM off or paused
-		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);  // set duty cycle to 0%
+		__HAL_TIM_SET_COMPARE(&H_PWM_TIMER, TIM_CHANNEL_2, 0);  // set duty cycle to 0%
 		blinkPattern = BLINK_PATTERN_SLOW;
 	}
 
@@ -240,13 +254,13 @@ void MainLoop(void) {
 	} else if (_persistDelayCounter == 0) {
 		// delay time elapsed - persist set temperature at the next storage address
 		if (_storageAddress + 2 >= EEPROM_SIZE) {
-			EEPROM24CW_WriteBytes(&hi2c2, EEPROM_ADDRESS, 0x00, (uint8_t*)&_tempSetCurrent, 2);
+			EEPROM24CW_WriteBytes(&H_I2C_A, EEPROM_ADDRESS, 0x00, (uint8_t*)&_tempSetCurrent, 2);
 		} else {
-			EEPROM24CW_WriteBytes(&hi2c2, EEPROM_ADDRESS, _storageAddress + 2, (uint8_t*)&_tempSetCurrent, 2);
+			EEPROM24CW_WriteBytes(&H_I2C_A, EEPROM_ADDRESS, _storageAddress + 2, (uint8_t*)&_tempSetCurrent, 2);
 		}
 		// zero the value stored at the current address
 		const uint16_t zero = 0;
-		EEPROM24CW_WriteBytes(&hi2c2, EEPROM_ADDRESS, _storageAddress, (uint8_t*)&zero, 2);
+		EEPROM24CW_WriteBytes(&H_I2C_A, EEPROM_ADDRESS, _storageAddress, (uint8_t*)&zero, 2);
 		_storageAddress += 2;
 		if (_storageAddress >= EEPROM_SIZE) _storageAddress = 0;
 		_persistDelayCounter = -1;
@@ -315,7 +329,7 @@ uint8_t DrawLvString(uint8_t posX, uint8_t posY, const char* str, lv_font_t* pFo
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef* htim) {
 	static uint16_t tempSetCurrent;
 
-	if (htim == &htim3) {
+	if (htim == &H_ENC_TIMER) {
 		tempSetCurrent = __HAL_TIM_GET_COUNTER(htim);
 		// note: check __HAL_TIM_GET_COUNTER, this event fires also without counter change
 		if (tempSetCurrent == _tempSetCurrent) return;  // no counter change - exit
@@ -359,21 +373,30 @@ void HAL_GPIO_EXTI_Falling_Callback(uint16_t GPIO_Pin) {
   * @retval None
   */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
+	static uint8_t counter = 0;
+	counter %= ADC_FREQUENCY;
 	// ADC_A (IN0) measured V - temp
 	uint16_t adc = _adcBuffer[0];
-	const float G = 1.0 + (100000.0 / 3440.0);  // V/V gain
-	const float Coef = 0.072285781;            // Ω/°C
-	const float Offset = 20.47139855;          // Ω
+	const float G = 1.0 + (100.0 / 3.44);  // V/V gain
+	const float coef = 0.072285781;        // Ω/°C
+	const float offset = 20.47139855;      // Ω
 	float uR8 = 1.5 - (adc * 3.0 / (4095.0 * G)) + (1.5 / G);
-	float temp = (1.0 / Coef) * ((3.0 * 330.0 / uR8) - (294.0 + 330.0 + Offset));
-	UartTransmit("ADC_A = %lu (%.2f°C)\n", adc, temp);
+	float temp = (1.0 / coef) * ((3.0 * 330.0 / uR8) - (294.0 + 330.0 + offset));
+	if (counter == 0) {
+		// transmit every 1s regardless of ADC timer frequency
+		UartTransmit("ADC_A = %lu (%.2f°C)\n", adc, temp);
+	}
 	_tempCurrent = round(temp);
 
 	// ADC_B (IN1) VCC
 	adc = _adcBuffer[1];
 	float vIn = (adc / 4095.0) * 3.0 * 11.0;
-	UartTransmit("ADC_B = %lu (%.2fV)\n", adc, vIn);
+	if (counter == 0) {
+		// transmit every 1s regardless of ADC timer frequency
+		UartTransmit("ADC_B = %lu (%.2fV)\n", adc, vIn);
+	}
 	_vInCurrent = round(vIn);
+	counter++;
 }
 
 void HAL_ADC_ErrorCallback(ADC_HandleTypeDef* hadc) {
@@ -385,13 +408,13 @@ void PwmStart(void) {
 	_isPwmOn = true;
 	_isPwmPaused = false;
 
-	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, TIMERS_CLOCK_FREQ / 1000 * _tempSetCurrent / 10);
+	__HAL_TIM_SET_COMPARE(&H_PWM_TIMER, TIM_CHANNEL_2, TIMERS_CLOCK_FREQ / 1000 * _tempSetCurrent / 10);
 
-	if (HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2) != HAL_OK) {
+	if (HAL_TIM_PWM_Start(&H_PWM_TIMER, TIM_CHANNEL_2) != HAL_OK) {
 		//Error_Handler();
 	}
 
-	if (HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_1 | TIM_CHANNEL_2) != HAL_OK) {
+	if (HAL_TIM_Encoder_Start_IT(&H_ENC_TIMER, TIM_CHANNEL_1 | TIM_CHANNEL_2) != HAL_OK) {
 		//Error_Handler();
 	}
 }
@@ -399,11 +422,11 @@ void PwmStart(void) {
 void PwmStop(void) {
 	if (!_isPwmOn) return;
 	_isPwmOn = false;
-	if (HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2) != HAL_OK) {
+	if (HAL_TIM_PWM_Stop(&H_PWM_TIMER, TIM_CHANNEL_2) != HAL_OK) {
 		//Error_Handler();
 	}
 
-	if (HAL_TIM_Encoder_Stop_IT(&htim3, TIM_CHANNEL_1 | TIM_CHANNEL_2) != HAL_OK) {
+	if (HAL_TIM_Encoder_Stop_IT(&H_ENC_TIMER, TIM_CHANNEL_1 | TIM_CHANNEL_2) != HAL_OK) {
 		//Error_Handler();
 	}
 }
@@ -420,7 +443,7 @@ void UartTransmit(const char* format_msg, ...) {
 	va_start(args, format_msg);
 	int len = vsprintf(textBuffer, format_msg, args);
 	va_end(args);
-	HAL_StatusTypeDef ret = HAL_UART_Transmit(&huart1, (uint8_t*)textBuffer, len, UART_TX_TIMEOUT);
+	HAL_StatusTypeDef ret = HAL_UART_Transmit(&H_UART_A, (uint8_t*)textBuffer, len, UART_TX_TIMEOUT);
 	if (ret != HAL_OK) {
 		Error_Handler();
 	}
