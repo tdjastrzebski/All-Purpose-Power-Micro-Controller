@@ -13,11 +13,12 @@
 ## SVD file
 download from https://github.com/posborne/cmsis-svd/tree/master/data/STMicro
 ## Open OCD
-* npm install --global xpm@latest
-* xpm install --global @xpack-dev-tools/openocd
+* `npm install --global xpm@latest`
+* `xpm install --global @xpack-dev-tools/openocd`
 * Set `XDG_CACHE_HOME` env variable to `%USERPROFILE%\AppData\Local\Temp` to prevent symbol cache path error
 ## GNU Arm Embedded Toolchain
-https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads
+* https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads
+* Set `MBED_GCC_ARM_PATH` env variable to `C:\Program Files (x86)\GNU Arm Embedded Toolchain\11 2021-q2\bin` (Windows latest path)
 ## Required NPM packages
 * `npm install -g cppbuild`
 * `npm install -g shx`
