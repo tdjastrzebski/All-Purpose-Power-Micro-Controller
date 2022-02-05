@@ -34,7 +34,9 @@ License:
 Reviews:
 * [ANOTHER NEAT GENERAL PURPOSE SOLDERING IRON DRIVER](https://hackaday.com/2022/01/31/another-neat-general-purpose-soldering-iron-driver) by Dave Rowntree
 
-> This repo contains complete documentation. If you are interested in building this device and need more details, please let me know rising an issue on GitHub.  
+This repo contains complete documentation. If you are interested in building this device and need more details, please let me know rising an issue on GitHub.  
+Improvements, suggestions and PRs are more than welcome - rise GitHub issue.  
+Finally, if you like this project do not hesitate to give it a star to let others know it is worth checking out.
 
 
 ![](Photos/IMG_3568.JPG)  
