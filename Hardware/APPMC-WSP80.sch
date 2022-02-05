@@ -1141,8 +1141,6 @@ F 5 "Rohm:PTZTFTE253.9B" V 3650 3300 50  0000 C CNN "Mfg"
 	1    3250 3300
 	0    1    1    0   
 $EndComp
-Text Notes 5250 600  0    50   ~ 0
-MPU requirements: min 64kB Flash and VBAT input -> STM32G0/STM32F4 series in 48pin package
 Wire Wire Line
 	4950 1800 5200 1800
 Wire Wire Line
@@ -1603,8 +1601,8 @@ Text Notes 9400 800  0    50   Italic 0
 for Segger J-Link mini\nuse pins 3-12
 Text Label 4950 2700 0    50   ~ 0
 PWM
-Text Notes 3600 1200 0    50   ~ 0
-alternative, pin-compatible MPUs:\nSTM32G031F8Px/G8Ux\nSTM32G041F8Px/G8Ux\nSTM32G051F8Px/G8Ux\nSTM32G061F8Px/G8Ux\nSTM32G071G8Ux/GBUx\nSTM32G081GBUx
+Text Notes 3600 1400 0    50   ~ 0
+alternative, pin-compatible MPUs, min 64k flash, 44-IO:\nSTM32G031C8Tx/Ux\nSTM32G041C8Tx/Ux\nSTM32G051C8Tx/Ux\nSTM32G061C8Tx/Ux\nSTM32G071C8Tx/Ux\nSTM32G071CBTx/Ux (128K)\nSTM32G081CBTx/Ux (128K)\nSTM32G0B1CBTx/Ux (128K)\nSTM32G0B1CCTx/Ux (256K)\nSTM32G0B1CETx/Ux (512k)
 $Comp
 L STM32G0B1CEUx:STM32G0B1CEUx U5
 U 1 1 619F6CF4
