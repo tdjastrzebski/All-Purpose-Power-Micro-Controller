@@ -22,6 +22,8 @@
 
 #define PWM_FREQUENCY 50           // Hz
 #define ADC_FREQUENCY 10           // Hz
+#define ADC_A_INDEX 0
+#define ADC_B_INDEX 1
 #define ADC_ACTIVE_CHANEL_COUNT 2  // number of conversions
 #define TEMP_MIN 200
 #define TEMP_MAX 450
@@ -219,7 +221,7 @@ void MainLoop(void) {
 			// adjust PWM duty cycle
 			int16_t tempDiff = _tempSetCurrent - _tempCurrent;
 
-			if (tempDiff <= 2) {
+			if (tempDiff < 0) {
 				__HAL_TIM_SET_COMPARE(&H_PWM_TIMER, TIM_CHANNEL_2, 0);  // set duty cycle to 0%
 				blinkPattern = BLINK_PATTERN_SLOW;
 			} else if (tempDiff <= 20) {
@@ -376,7 +378,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 	static uint8_t counter = 0;
 	counter %= ADC_FREQUENCY;
 	// ADC_A (IN0) measured V - temp
-	uint16_t adc = _adcBuffer[0];
+	uint16_t adc = _adcBuffer[ADC_A_INDEX];
 	const float G = 1.0 + (100.0 / 3.44);  // V/V gain
 	const float coef = 0.072285781;        // Ω/°C
 	const float offset = 20.47139855;      // Ω
@@ -389,7 +391,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 	_tempCurrent = round(temp);
 
 	// ADC_B (IN1) VCC
-	adc = _adcBuffer[1];
+	adc = _adcBuffer[ADC_B_INDEX];
 	float vIn = (adc / 4095.0) * 3.0 * 11.0;
 	if (counter == 0) {
 		// transmit every 1s regardless of ADC timer frequency
