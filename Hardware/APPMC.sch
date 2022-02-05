@@ -739,7 +739,7 @@ L Device:Thermistor #TH1
 U 1 1 60AF1CCB
 P 2650 7250
 F 0 "#TH1" V 2750 7200 50  0000 L CNN
-F 1 "22.65-53Ω 20-450°C (37.5 avg)" V 2500 6900 50  0000 L CNN
+F 1 "22-53Ω 21-450°C" V 2500 6900 50  0000 L CNN
 F 2 "" H 2650 7250 50  0001 C CNN
 F 3 "~" H 2650 7250 50  0001 C CNN
 	1    2650 7250
@@ -1057,7 +1057,7 @@ Connection ~ 1850 5550
 Wire Wire Line
 	1850 5550 2200 5550
 Text Notes 3700 6850 0    50   ~ 0
-gain=1+(100k/Rg)=30.07
+gain=1+(100k/Rg)=30.41
 Wire Wire Line
 	2200 6250 2450 6250
 Wire Wire Line
@@ -1141,8 +1141,6 @@ Wire Wire Line
 Connection ~ 1400 5550
 Wire Wire Line
 	1400 5550 1850 5550
-Text Notes 3700 6750 0    50   Italic 0
-+32.5/-37.7mV
 Wire Wire Line
 	2450 7250 2450 6950
 Wire Wire Line
@@ -1906,17 +1904,6 @@ $EndComp
 Wire Wire Line
 	8250 4950 8300 4950
 $Comp
-L Connector:Conn_01x01_Female J20
-U 1 1 6240A578
-P 5900 6450
-F 0 "J20" H 5750 6600 50  0000 L CNN
-F 1 "ADC_A" H 5700 6400 50  0000 L CNN
-F 2 "Custom:PinHeader_1x01_P1.27mm_Vertical" H 5900 6450 50  0001 C CNN
-F 3 "~" H 5900 6450 50  0001 C CNN
-	1    5900 6450
-	1    0    0    -1  
-$EndComp
-$Comp
 L Connector:Conn_01x01_Female J18
 U 1 1 61B8CE07
 P 5650 5050
@@ -2089,7 +2076,7 @@ L Device:R_Small R9
 U 1 1 6224FB5A
 P 4300 6350
 F 0 "R9" V 4150 6350 50  0000 C CNN
-F 1 "3.44k" V 4400 6400 50  0000 C CNN
+F 1 "3.4k" V 4400 6400 50  0000 C CNN
 F 2 "Custom:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder_Jump" H 4300 6350 50  0001 C CNN
 F 3 "~" H 4300 6350 50  0001 C CNN
 F 4 "Rg" V 4300 6350 31  0000 C CNN "Label"
@@ -3510,7 +3497,7 @@ E0 12 5C D2 02 00 00 9E 47 F0 00 00 00 CF 23 78 00 00 80 E7 11 3C 00 00 C0 F3 D8
 EndData
 $EndBitmap
 Text Notes 5350 6350 0    50   ~ 0
-~~0.5÷2.9V
+0.511÷2.66V
 Text Notes 1950 6400 0    50   ~ 0
 3.0V
 Text Notes 2300 7600 0    50   ~ 0
@@ -3536,4 +3523,19 @@ Text Notes 9150 7750 0    50   ~ 10
 License: CC BY-NC-ND 4.0
 Text Notes 10600 7650 0    59   ~ 12
 3
+Text Notes 3700 6750 0    50   Italic 0
+-32.51/+37.67mV
+$Comp
+L Connector:Conn_01x01_Female J20
+U 1 1 6240A578
+P 5900 6450
+F 0 "J20" H 5800 6300 50  0000 L CNN
+F 1 "ADC_A" H 5700 6400 50  0000 L CNN
+F 2 "Custom:PinHeader_1x01_P1.27mm_Vertical" H 5900 6450 50  0001 C CNN
+F 3 "~" H 5900 6450 50  0001 C CNN
+	1    5900 6450
+	1    0    0    -1  
+$EndComp
+Text Notes 3650 6250 0    50   ~ 0
+1.5V
 $EndSCHEMATC

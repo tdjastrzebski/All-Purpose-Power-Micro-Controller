@@ -739,7 +739,7 @@ L Device:Thermistor #TH1
 U 1 1 60AF1CCB
 P 2650 7250
 F 0 "#TH1" V 2750 7200 50  0000 L CNN
-F 1 "22.65-53Ω 20-450°C (37.5 avg)" V 2500 6900 50  0000 L CNN
+F 1 "22-53Ω 21-450°C" V 2500 6900 50  0000 L CNN
 F 2 "" H 2650 7250 50  0001 C CNN
 F 3 "~" H 2650 7250 50  0001 C CNN
 	1    2650 7250
@@ -1027,7 +1027,7 @@ Connection ~ 1850 5550
 Wire Wire Line
 	1850 5550 2200 5550
 Text Notes 3700 6850 0    50   ~ 0
-gain=1+(100k/Rg)=30.07
+gain=1+(100k/Rg)=30.41
 Wire Wire Line
 	1750 7050 3150 7050
 Connection ~ 3150 7050
@@ -1099,7 +1099,7 @@ Connection ~ 1400 5550
 Wire Wire Line
 	1400 5550 1850 5550
 Text Notes 3700 6750 0    50   Italic 0
-+32.5/-37.7mV
+-32.51/+37.67mV
 Wire Wire Line
 	2450 7250 2450 6800
 Wire Wire Line
@@ -1387,7 +1387,7 @@ $Comp
 L Connector:Conn_01x01_Female J20
 U 1 1 6240A578
 P 5900 6450
-F 0 "J20" H 5750 6600 50  0000 L CNN
+F 0 "J20" H 5800 6300 50  0000 L CNN
 F 1 "ADC_A" H 5700 6400 50  0000 L CNN
 F 2 "Custom:PinHeader_1x01_P1.27mm_Vertical" H 5900 6450 50  0001 C CNN
 F 3 "~" H 5900 6450 50  0001 C CNN
@@ -1509,7 +1509,7 @@ L Device:R_Small R9
 U 1 1 6224FB5A
 P 4300 6350
 F 0 "R9" V 4150 6350 50  0000 C CNN
-F 1 "3.44k" V 4400 6400 50  0000 C CNN
+F 1 "3.4k" V 4400 6400 50  0000 C CNN
 F 2 "Custom:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder_Jump" H 4300 6350 50  0001 C CNN
 F 3 "~" H 4300 6350 50  0001 C CNN
 F 4 "Rg" V 4300 6350 31  0000 C CNN "Label"
@@ -1802,8 +1802,8 @@ F 3 "~" H 7050 6400 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 Text Notes 5350 6350 0    50   ~ 0
-~~0.5÷2.9V
-Text Notes 1950 6400 0    50   ~ 0
+0.511÷2.66V
+Text Notes 2050 6450 0    50   ~ 0
 3.0V
 Text Notes 2300 7600 0    50   ~ 0
 for WSP80 use socket Amphenol T 3437 000
@@ -1834,4 +1834,6 @@ Wire Wire Line
 	2750 6250 2900 6250
 Text Notes 8350 7650 0    65   ~ 13
 configured as WSP80 driver
+Text Notes 3600 6250 0    50   ~ 0
+1.5V
 $EndSCHEMATC
