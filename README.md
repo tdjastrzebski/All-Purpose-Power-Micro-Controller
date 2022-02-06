@@ -34,6 +34,10 @@ License:
 Reviews:
 * [ANOTHER NEAT GENERAL PURPOSE SOLDERING IRON DRIVER](https://hackaday.com/2022/01/31/another-neat-general-purpose-soldering-iron-driver) by Dave Rowntree
 
+Improvement ideas (help wanted):
+* Detecting idle state by analyzing temperature fluctuations and implementing auto sleep mode.
+* Implementing self-calibration (PWM duty cycle) algorithm to increase temp precision by analyzing rate of temperature growth.
+
 This repo contains complete documentation. If you are interested in building this device and need more details, please let me know rising an issue on GitHub.  
 Improvements, suggestions and PRs are more than welcome - rise GitHub issue.  
 Finally, if you like this project do not hesitate to give it a star to let others know it is worth checking out.
