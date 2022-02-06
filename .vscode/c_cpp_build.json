@@ -1,0 +1,91 @@
+{
+	"version": 1,
+	"params": {
+		"buildDir": "BUILD",
+		"buildOutput": "${buildDir}/${buildTypeName}",
+		"linkerScript": "STM32G0B1CEUX_FLASH.ld",
+		"cpu": "-mcpu=cortex-m0plus",
+		"fpu": "-mfloat-abi=soft"
+	},
+	"configurations": [
+		{
+			"name": "gcc",
+			"problemMatchers": ["$gcc"],
+			"buildTypes": [
+				{
+					"name": "debug",
+					"params": { "buildTypeFlags": "-O0 -g" } // -O0 -g3
+				},
+				{
+					"name": "release",
+					"params": { "buildTypeFlags": "-Os -g1" } // -O3 -g3
+				}
+			],
+			"buildSteps": [
+				{
+					"name": "C Compile",
+					"filePattern": "**/*.c",
+					"outputFile": "${buildOutput}/${fileDirectory}/${fileName}.o",
+					"trimIncludePaths": true,
+					"params": {
+						"flags": "${cpu} ${fpu} --specs=nano.specs -mthumb -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF[${outputFile}] -MT[${outputFile}]"
+					},
+					"command": "arm-none-eabi-gcc -std=gnu11 -c ${flags} ${buildTypeFlags} (-I[$${includePath}]) (-D$${defines}) (-include [$${forcedInclude}]) [${filePath}] -o [${outputFile}]"
+				},
+				{
+					"name": "C++ Compile",
+					"filePattern": "**/*.cpp",
+					"outputFile": "${buildOutput}/${fileDirectory}/${fileName}.o",
+					"trimIncludePaths": true,
+					"params": {
+						"flags": "${cpu} ${fpu} --specs=nano.specs -mthumb -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF[${outputFile}] -MT[${outputFile}]"
+					},
+					"command": "arm-none-eabi-g++ -std=gnu++14 -c ${flags} ${buildTypeFlags} (-I[$${includePath}]) (-D$${defines}) (-include [$${forcedInclude}]) [${filePath}] -o [${outputFile}]"
+				},
+				{
+					"name": "Assembly Compile",
+					"filePattern": "**/*.s",
+					"outputFile": "${buildOutput}/${fileDirectory}/${fileName}.o",
+					"trimIncludePaths": true,
+					"params": {
+						"flags": "${cpu} ${fpu} --specs=nano.specs -mthumb"
+					},
+					"command": "arm-none-eabi-gcc -c -x assembler-with-cpp ${flags} ${buildTypeFlags} (-I[$${includePath}]) [${filePath}] -o [${outputFile}]"
+				},
+				{
+					"name": "Build object list",
+					"command": "shx find [${buildOutput}/**/*.o] > [${buildOutput}/objects.txt]"
+				},
+				{
+					"name": "Link to elf",
+					"params": {
+						"flags": "-u _printf_float ${cpu} --specs=nosys.specs -Wl,-Map=[${buildOutput}/${workspaceRootFolderName}.map] -Wl,--gc-sections -static --specs=nano.specs ${fpu} -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group"
+					},
+					"command": "arm-none-eabi-g++ ${flags} -T[${linkerScript}] @[${buildOutput}/objects.txt] -o [${buildOutput}/${workspaceRootFolderName}.elf]"
+				},
+				{
+					"name": "elf -> list",
+					"command": "arm-none-eabi-objdump -h -S [${buildOutput}/${workspaceRootFolderName}.elf] > [$${buildOutput}/${workspaceRootFolderName}.list]"
+				},
+				{
+					"name": "elf -> bin",
+					"command": "arm-none-eabi-objcopy -O binary [${buildOutput}/${workspaceRootFolderName}.elf] [$${buildOutput}/${workspaceRootFolderName}.bin]"
+				},
+				{
+					"name": "elf -> hex",
+					"command": "arm-none-eabi-objcopy -O ihex [${buildOutput}/${workspaceRootFolderName}.elf] [${buildOutput}/${workspaceRootFolderName}.hex]"
+				},
+				{
+					"name": "size",
+					"command": "arm-none-eabi-size [${buildOutput}/${workspaceRootFolderName}.elf]"
+				}
+				/*,
+				{
+					"name": "Deploy",
+					"command": "st-flash write [${buildOutput}/${workspaceRootFolderName}.bin] 0x08000000"
+				}
+				*/
+			]
+		}
+	]
+}

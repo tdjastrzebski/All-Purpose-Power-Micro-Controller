@@ -10,3 +10,5 @@ debug.log
 .project
 .mxproject
 .cproject
+.settings
+*.state.json

@@ -739,7 +739,7 @@ L Device:Thermistor #TH1
 U 1 1 60AF1CCB
 P 2650 7250
 F 0 "#TH1" V 2750 7200 50  0000 L CNN
-F 1 "22-53Ω 21-450°C" V 2500 6900 50  0000 L CNN
+F 1 "22-53Ω (21-450°C)" V 2500 6900 50  0000 L CNN
 F 2 "" H 2650 7250 50  0001 C CNN
 F 3 "~" H 2650 7250 50  0001 C CNN
 	1    2650 7250
@@ -1832,8 +1832,12 @@ Wire Wire Line
 	2800 6650 2900 6650
 Wire Wire Line
 	2750 6250 2900 6250
-Text Notes 8350 7650 0    65   ~ 13
+Text Notes 8450 7650 0    65   ~ 13
 configured as WSP80 driver
 Text Notes 3600 6250 0    50   ~ 0
 1.5V
+Text Notes 10600 7650 0    65   ~ 13
+3
+Text Notes 8450 7800 0    50   ~ 10
+License: CC BY-NC-ND 4.0
 $EndSCHEMATC

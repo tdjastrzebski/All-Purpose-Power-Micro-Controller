@@ -1,0 +1,124 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug (OpenOCD)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "${workspaceRoot}/BUILD/debug",
+            "executable": "${workspaceRoot}/BUILD/debug/${workspaceRootFolderName}.elf",
+            "svdFile": "${workspaceRoot}/STM32G0B1.svd",
+            "runToMain": true,
+            "device": "STM32G0B1CEUx",
+            "searchDir": [
+                "C:/Program Files/OpenOCD/scripts"
+            ],
+            "configFiles": [
+                "/interface/stlink.cfg",
+                "/target/stm32g0x.cfg",
+            ],
+            "interface": "swd",
+            "swoConfig": {
+                "enabled": true,
+                "cpuFrequency": 8000000,
+                "swoFrequency": 2000000,
+                "source": "probe",
+                "decoders": [
+                    {
+                        "type": "console",
+                        "label": "ITM",
+                        "port": 0
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Debug (pyOCD)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "pyocd",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/BUILD/debug/${workspaceRootFolderName}.elf",
+            "device": "STM32G0B1",
+            "targetId": "STM32G0B1CEUx",
+            "svdFile": "${workspaceRoot}/STM32G0B1.svd",
+            "runToMain": true,
+            "interface": "swd"
+        },
+        {
+            "name": "Debug (pyOCD direct)",
+            "type": "cppdbg",
+            "request": "launch",
+            "MIMode": "gdb",
+            "miDebuggerPath": "arm-none-eabi-gdb",
+            "debugServerPath": "pyocd",
+            "debugServerArgs": "gdbserver -t STM32G0B1CEUx",
+            "program": "${workspaceRoot}/BUILD/debug/${workspaceRootFolderName}.elf",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceRoot}",
+            "environment": [],
+            "externalConsole": false,
+            "serverLaunchTimeout": 20000,
+            "filterStderr": true,
+            "filterStdout": false,
+            "serverStarted": "GDB\\ server\\ started",
+            "setupCommands": [
+                {
+                    "text": "-environment-cd ${workspaceRoot}\\BUILD\\debug"
+                },
+                {
+                    "text": "-target-select remote localhost:3333",
+                    "description": "connect to target",
+                    "ignoreFailures": false
+                },
+                {
+                    "text": "-file-exec-and-symbols ${workspaceRootFolderName}.elf",
+                    "description": "load file",
+                    "ignoreFailures": false
+                },
+                {
+                    "text": "-interpreter-exec console \"monitor endian little\"",
+                    "ignoreFailures": false
+                },
+                {
+                    "text": "-interpreter-exec console \"monitor reset\"",
+                    "ignoreFailures": false
+                },
+                {
+                    "text": "-interpreter-exec console \"monitor halt\"",
+                    "ignoreFailures": false
+                },
+                {
+                    "text": "-interpreter-exec console \"monitor arm semihosting enable\"",
+                    "ignoreFailures": false
+                },
+                {
+                    "text": "-target-download",
+                    "description": "flash target",
+                    "ignoreFailures": false
+                }
+            ],
+            "logging": {
+                "moduleLoad": true,
+                "trace": true,
+                "engineLogging": true,
+                "programOutput": true,
+                "exceptions": true
+            },
+        },
+        {
+            "name": "Debug (ST-Util)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "stutil",
+            "cwd": "${workspaceRoot}",
+            "executable": "./BUILD/debug/${workspaceRootFolderName}.elf",
+            "device": "STM32G0B1",
+            "v1": false,
+            "svdFile": "${workspaceRoot}/STM32G0B1.svd",
+            "preLaunchTask": "Build & Deploy"
+        }
+    ]
+}
