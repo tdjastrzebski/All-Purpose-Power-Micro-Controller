@@ -37,6 +37,7 @@ Reviews:
 Improvement ideas (help wanted):
 * Detecting idle state by analyzing temperature fluctuations and implementing auto sleep mode.
 * Implementing self-calibration (PWM duty cycle) algorithm to increase temp precision by analyzing rate of temperature growth.
+* Eliminate PWM - it adds significant ripple to the measured signal.
 
 This repo contains complete documentation. If you are interested in building this device and need more details, please let me know rising an issue on GitHub.  
 Improvements, suggestions and PRs are more than welcome - rise GitHub issue.  
