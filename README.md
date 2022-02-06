@@ -4,7 +4,7 @@ This general purpose power micro controller features:
 * Wheatstone Bridge front-end
 * New Texas Instruments [INA823](https://www.ti.com/product/INA823) instrumentation amplifier (see schematic for alternatives)
 * Accurate Texas Instruments [REF2030](https://www.ti.com/product/REF2030) 1.5/3V dual reference voltage source (<0.05%, 1.5 ppm/°C typ.)
-* 48-pin [STM32G0B1CE](https://www.st.com/en/microcontrollers-microprocessors/stm32g0b1ce.html) 512kB Flash, 144 kB RAM MPU (see schematic for alternatives)
+* 48-pin [STM32G0B1CE](https://www.st.com/en/microcontrollers-microprocessors/stm32g0b1ce.html) 512kB Flash, 144 kB RAM MPU (64kB flash minimum - see schematic for alternatives)
 * Popular [Waveshare 18179](https://www.waveshare.com/1.3inch-oled-module-c.htm) 128x64 1.3" OLED display
 * [STLINK-V3](https://www.st.com/en/development-tools/stlink-v3mini.html) mini and STLINK-V2 debug connectors, Segger J-Link mini supported.
 * Rotary encoder and EEPROM  
