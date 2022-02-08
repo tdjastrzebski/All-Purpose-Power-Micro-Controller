@@ -57,7 +57,7 @@ Text Label 4900 1400 0    50   ~ 0
 ENC_A
 Text Label 4900 1500 0    50   ~ 0
 ENC_B
-Text Label 6550 3200 0    50   ~ 0
+Text Label 4950 2900 0    50   ~ 0
 BTN
 Wire Wire Line
 	6500 2400 6800 2400
@@ -1280,8 +1280,6 @@ TX_B
 Text Label 4950 2500 0    50   ~ 0
 RX_B
 Wire Wire Line
-	6500 3200 6800 3200
-Wire Wire Line
 	5200 3800 4900 3800
 Wire Wire Line
 	5200 3700 4900 3700
@@ -1645,8 +1643,6 @@ Wire Wire Line
 Connection ~ 5850 4100
 Wire Wire Line
 	5200 2900 4900 2900
-Text Label 4950 2900 0    50   ~ 0
-WKUP
 Wire Wire Line
 	6500 2700 6800 2700
 Text Label 6550 2700 0    50   ~ 0

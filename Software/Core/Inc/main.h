@@ -84,9 +84,6 @@ void Error_Handler(void);
 #define SCL_A_GPIO_Port GPIOB
 #define SDA_A_Pin GPIO_PIN_14
 #define SDA_A_GPIO_Port GPIOB
-#define BTN_Pin GPIO_PIN_8
-#define BTN_GPIO_Port GPIOA
-#define BTN_EXTI_IRQn EXTI4_15_IRQn
 #define TX_A_Pin GPIO_PIN_9
 #define TX_A_GPIO_Port GPIOA
 #define ENC2_Pin GPIO_PIN_6
@@ -101,6 +98,9 @@ void Error_Handler(void);
 #define SWCLK_GPIO_Port GPIOA
 #define PWM_Pin GPIO_PIN_3
 #define PWM_GPIO_Port GPIOB
+#define BTN_Pin GPIO_PIN_5
+#define BTN_GPIO_Port GPIOB
+#define BTN_EXTI_IRQn EXTI4_15_IRQn
 #define MOSI_Pin GPIO_PIN_7
 #define MOSI_GPIO_Port GPIOB
 #define SCK_Pin GPIO_PIN_8

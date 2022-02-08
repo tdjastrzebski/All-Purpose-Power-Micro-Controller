@@ -88,13 +88,13 @@ static void PwmStop(void);
 static void PwmPause(void);
 static void UartTransmit(const char *pString, ...);
 
-void PreInit() {}
+extern void PreInit() {}
 
-void SysInit() {}
+extern void SysInit() {}
 
-void Init() {}
+extern void Init() {}
 
-void PostInit(void) {
+extern void PostInit(void) {
 	// calibrate ADC before start
 	if (HAL_ADCEx_Calibration_Start(&H_ADC) != HAL_OK) {
 		Error_Handler();
@@ -164,7 +164,7 @@ void PostInit(void) {
 	}
 }
 
-void MainLoop(void) {
+extern void MainLoop(void) {
 	static uint32_t blinkPattern = BLINK_PATTERN_SLOW;
 	static uint8_t blinkPatternShift = 0;
 
@@ -282,7 +282,7 @@ void MainLoop(void) {
   * @brief  Draw string using LVGL library fonts.
   * @retval drawn string width
   */
-uint8_t DrawLvString(uint8_t posX, uint8_t posY, const char *str, lv_font_t *pFont) {
+static uint8_t DrawLvString(uint8_t posX, uint8_t posY, const char *str, lv_font_t *pFont) {
 	lv_font_glyph_dsc_t dsc;
 	uint8_t newPosX = posX;
 
@@ -411,7 +411,7 @@ void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc) {
 	UartTransmit("ADC ERROR, state: %lu, code: %lu\n", hadc->State, hadc->ErrorCode);
 }
 
-void PwmStart(void) {
+static void PwmStart(void) {
 	if (_isPwmOn)
 		return;
 	_isPwmOn = true;
@@ -428,7 +428,7 @@ void PwmStart(void) {
 	}
 }
 
-void PwmStop(void) {
+static void PwmStop(void) {
 	if (!_isPwmOn)
 		return;
 	_isPwmOn = false;
@@ -441,14 +441,14 @@ void PwmStop(void) {
 	}
 }
 
-void PwmPause(void) {
+static void PwmPause(void) {
 	if (!_isPwmOn | _isPwmPaused)
 		return;
 	_isPwmPaused = true;
 	PwmStop();
 }
 
-void UartTransmit(const char *format_msg, ...) {
+static void UartTransmit(const char *format_msg, ...) {
 	static char textBuffer[64];
 	va_list args;
 	va_start(args, format_msg);
