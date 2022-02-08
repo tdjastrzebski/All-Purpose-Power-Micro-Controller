@@ -1833,7 +1833,7 @@ configured as WSP80 driver
 Text Notes 3600 6250 0    50   ~ 0
 1.5V
 Text Notes 10600 7650 0    65   ~ 13
-3
+3.1
 Text Notes 8450 7800 0    50   ~ 10
 License: CC BY-NC-ND 4.0
 $EndSCHEMATC
