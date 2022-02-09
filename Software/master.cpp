@@ -88,13 +88,13 @@ static void PwmStop(void);
 static void PwmPause(void);
 static void UartTransmit(const char *pString, ...);
 
-extern void PreInit() {}
+extern "C" void PreInit() {}
 
-extern void SysInit() {}
+extern "C" void SysInit() {}
 
-extern void Init() {}
+extern "C" void Init() {}
 
-extern void PostInit(void) {
+extern "C" void PostInit(void) {
 	// calibrate ADC before start
 	if (HAL_ADCEx_Calibration_Start(&H_ADC) != HAL_OK) {
 		Error_Handler();
@@ -164,7 +164,7 @@ extern void PostInit(void) {
 	}
 }
 
-extern void MainLoop(void) {
+extern "C" void MainLoop(void) {
 	static uint32_t blinkPattern = BLINK_PATTERN_SLOW;
 	static uint8_t blinkPatternShift = 0;
 
@@ -333,7 +333,7 @@ static uint8_t DrawLvString(uint8_t posX, uint8_t posY, const char *str, lv_font
   * @param  htim TIM IC handle
   * @retval None
   */
-void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim) {
+extern "C" void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim) {
 	static uint16_t tempSetCurrent;
 
 	if (htim == &H_ENC_TIMER) {
@@ -362,7 +362,7 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim) {
   * @param  GPIO_Pin Specifies the pins connected to the EXTI line.
   * @retval None
   */
-void HAL_GPIO_EXTI_Falling_Callback(uint16_t GPIO_Pin) {
+extern "C" void HAL_GPIO_EXTI_Falling_Callback(uint16_t GPIO_Pin) {
 	if (GPIO_Pin == BTN_Pin) {
 		_isDirty = true;
 		if (_isPwmOn) {
@@ -380,7 +380,7 @@ void HAL_GPIO_EXTI_Falling_Callback(uint16_t GPIO_Pin) {
   * @param  hadc ADC handle
   * @retval None
   */
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
+extern "C" void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
 	static uint8_t counter = 0;
 	counter %= ADC_FREQUENCY;
 	// ADC_A (IN0) measured V - temp
@@ -407,7 +407,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
 	counter++;
 }
 
-void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc) {
+extern "C" void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc) {
 	UartTransmit("ADC ERROR, state: %lu, code: %lu\n", hadc->State, hadc->ErrorCode);
 }
 
