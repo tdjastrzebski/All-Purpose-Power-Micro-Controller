@@ -1701,7 +1701,7 @@ Wire Wire Line
 Text Label 900  5950 0    50   ~ 0
 3.0V
 Text Notes 500  6950 0    50   Italic 0
-any low-offset (<0.1mV),\nhigh output current OpAmp\n*high CLoad drive*\nOPA388, NCS2005 (light capacitive load)\nOPA350EA (up to 1µF, MSOP-8 pkg)\nLM8261 (unlimited capacitive load use, lower precision)
+any low-offset (<0.1mV),\nhigh output current OpAmp\n*high CLoad drive*\nOPA388, NCS2005 (light capacitive load)\nOPA350EA (up to 1µF, MSOP-8 pkg)\nLM8261 (unlimited capacitive load, lower precision)
 $Comp
 L Device:C_Small C101
 U 1 1 6205B8F8
