@@ -50,3 +50,4 @@ Finally, if you like this project do not hesitate to give it a star to let other
 ![](Photos/IMG_3571.JPG)  
 ![](Photos/Schematic.png)  
 ![](Photos/Wheatstone_Bridge.png)  
+![](Photos/TI_INA_Amplifiers.png)  
