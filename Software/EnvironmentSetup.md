@@ -4,17 +4,17 @@
 * Python + PIP
 * Git
 * VS Code
-## pyocd install
+## pyocd
 * `pip install pyocd --upgrade`
 * `pyocd pack update`
 * `pyocd pack find stm32g0b1`
 * `pyocd pack install STM32G0B1CEUx`
-## SVD file - MPU specific
-Download from https://github.com/posborne/cmsis-svd/tree/master/data/STMicro and place in the Software root folder.
 ## Open OCD
 * `npm install --global xpm@latest`
 * `xpm install --global @xpack-dev-tools/openocd`
 * Set `XDG_CACHE_HOME` env variable to `%USERPROFILE%\AppData\Local\Temp` to suppress symbol cache path error (Windows)
+## SVD file - MPU specific
+Download from https://github.com/posborne/cmsis-svd/tree/master/data/STMicro and place in the Software root folder.
 ## GNU Arm Embedded Toolchain
 * https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/downloads
 * Set `MBED_GCC_ARM_PATH` env variable to `C:\Program Files (x86)\Arm GNU Toolchain arm-none-eabi\11.2 2022.02\bin` (latest version Windows path).
