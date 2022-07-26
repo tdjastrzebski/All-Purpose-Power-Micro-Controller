@@ -26,6 +26,8 @@ Download from https://github.com/posborne/cmsis-svd/tree/master/data/STMicro and
 ## Required VS Code plug-ins
 * `C/C++` (Microsoft)
 * `Cortex-Debug` (marcus25) See: https://github.com/Marus/cortex-debug/wiki
+## VS Code Config
+* Set the default VS Code terminal to `Git Bash`. Otherwise, VS Code may try to execute NPM packages as (e.g.) PowerShell scripts.
 ## Recommended VS Code plug-ins
 * `LinkerScript` (Zixuan Wang)
 * `Arm Assembly` (dan-c-underwood)
