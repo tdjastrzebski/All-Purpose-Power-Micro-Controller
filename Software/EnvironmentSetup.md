@@ -10,7 +10,8 @@
 * `pyocd pack find stm32g0b1`
 * `pyocd pack install STM32G0B1CEUx`
 ## Open OCD
-* Download the latest version from https://github.com/xpack-dev-tools/openocd-xpack/releases
+* Download the latest version from https://github.com/xpack-dev-tools/openocd-xpack/releases  
+or from https://sourceforge.net/projects/openocd/
 * Unzip it to `OpenOCD` folder in `C:\Program Files`
 * Add `C:\Program Files\OpenOCD\bin` to system PATH variable
 > Note: xpm utility currently does not really support global installations, hence I recommend the above approach
