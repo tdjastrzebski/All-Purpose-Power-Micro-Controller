@@ -13,7 +13,7 @@
 * Download the latest version from https://github.com/xpack-dev-tools/openocd-xpack/releases
 * Unzip it to `OpenOCD` folder in `C:\Program Files`
 * Add `C:\Program Files\OpenOCD\bin` to system PATH variable
-> Note: xpm utility currently dos not really support global installations, hence I recomment the above approach
+> Note: xpm utility currently does not really support global installations, hence I recommend the above approach
 ## SVD file - MPU specific
 Download from https://github.com/posborne/cmsis-svd/tree/master/data/STMicro and place in the Software root folder.
 ## GNU Arm Embedded Toolchain
