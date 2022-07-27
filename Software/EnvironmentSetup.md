@@ -13,7 +13,7 @@
 * Download the latest version from https://github.com/xpack-dev-tools/openocd-xpack/releases
 * Unzip it to `OpenOCD` folder in `C:\Program Files`
 * Add `C:\Program Files\OpenOCD\bin` to system PATH variable
-> Note: xpm currently dos not really support global installations
+> Note: xpm utility currently dos not really support global installations, hence I recomment the above approach
 ## SVD file - MPU specific
 Download from https://github.com/posborne/cmsis-svd/tree/master/data/STMicro and place in the Software root folder.
 ## GNU Arm Embedded Toolchain
@@ -35,5 +35,5 @@ Download from https://github.com/posborne/cmsis-svd/tree/master/data/STMicro and
 * `Code Spell Checker` (Street Side Software)
 * `Build++` (Tomasz Jastrzębski)
 ## ST Utilities
-[STSW-LINK009](https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-utilities/stsw-link009.html) ST-LINK USB Driver
-[STSW-LINK007](https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-programmers/stsw-link007.html) ST-LINK boards firmware upgrade
+* [STSW-LINK009](https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-utilities/stsw-link009.html) ST-LINK USB Driver
+* [STSW-LINK007](https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-programmers/stsw-link007.html) ST-LINK boards firmware upgrade
