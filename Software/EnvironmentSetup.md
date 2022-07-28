@@ -4,12 +4,12 @@
 * Python + PIP
 * Git
 * VS Code
-## pyocd
+## pyOCD
 * `pip install pyocd --upgrade`
 * `pyocd pack update`
 * `pyocd pack find stm32g0b1`
 * `pyocd pack install STM32G0B1CEUx`
-## Open OCD
+## OpenOCD
 * Download the latest version from https://github.com/xpack-dev-tools/openocd-xpack/releases  
 or from https://sourceforge.net/projects/openocd/
 * Unzip it to `OpenOCD` folder in `C:\Program Files`
