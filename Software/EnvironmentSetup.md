@@ -11,13 +11,14 @@
 * `pyocd pack install STM32G0B1CEUx`
 ## OpenOCD
 * Download the latest version from https://github.com/xpack-dev-tools/openocd-xpack/releases  
-or from https://sourceforge.net/projects/openocd/
+or build yourself following [this guide](https://github.com/Marus/cortex-debug/wiki/How-to-build-current-OpenOCD-version-on-Windows)
 * Unzip it to `OpenOCD` folder in `C:\Program Files`
 * Add `C:\Program Files\OpenOCD\bin` to system PATH variable
 > Note: xpm utility does not really support global installations (yet), hence I suggest the above approach.
 ## SVD file - MPU specific
 Download from https://github.com/posborne/cmsis-svd/tree/master/data/STMicro and place in the Software root folder.
 ## GNU Arm Embedded Toolchain
+* required version: **arm-none-eabi** (bare-metal target)
 * https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/downloads
 * Set `MBED_GCC_ARM_PATH` env variable to `C:\Program Files (x86)\Arm GNU Toolchain arm-none-eabi\11.2 2022.02\bin` (latest version Windows path).
 * Add `MBED_GCC_ARM_PATH` env variable to Windows `Path` env variable (`%MBED_GCC_ARM_PATH%`) - if not set by the installer.
