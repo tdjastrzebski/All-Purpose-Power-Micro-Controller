@@ -19,7 +19,7 @@ or build yourself following [this guide](https://github.com/Marus/cortex-debug/w
 Download from https://github.com/posborne/cmsis-svd/tree/master/data/STMicro and place in the Software root folder.
 ## GNU Arm Embedded Toolchain
 * required version: **arm-none-eabi** (bare-metal target)
-* https://github.com/xpack-dev-tools/arm-none-eabi-gcc-xpack/
+* Download from https://github.com/xpack-dev-tools/arm-none-eabi-gcc-xpack
 * Set `MBED_GCC_ARM_PATH` env variable to `C:\Program Files (x86)\Arm GNU Toolchain arm-none-eabi\11.2 2022.02\bin` (latest version Windows path).
 * Add `MBED_GCC_ARM_PATH` env variable to Windows `Path` env variable (`%MBED_GCC_ARM_PATH%`) - if not set by the installer.
 > Note: the most official build can be found [here](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/downloads) but I do not recomment using it. `arm-none-eabi-gdb` ver. 11.2 has a buggy dependency on unsupported and retired Python 2.7.
