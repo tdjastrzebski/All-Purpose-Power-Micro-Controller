@@ -6,7 +6,7 @@
             "intelliSenseMode": "gcc-arm",
             "cStandard": "c11",
             "cppStandard": "c++14",
-            "compilerPath": "${env:MBED_GCC_ARM_PATH}/arm-none-eabi-g++",
+            "compilerPath": "${env:MBED_GCC_ARM_PATH}/arm-none-eabi-g++.exe",
             "forcedInclude": [
             ],
             "includePath": [

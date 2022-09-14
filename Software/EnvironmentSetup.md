@@ -6,7 +6,7 @@
 * Python and PIP
 * VS Code
 ## pyocd install
-* `pip install pyocd --upgrade`
+* `pip install pyocd --upgrade` On Windows install as admin, otherwise install is local and PATH settings is required.
 * `pyocd pack update`
 * `pyocd pack find stm32g0b1`
 * `pyocd pack install STM32G0B1CEUx`

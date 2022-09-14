@@ -1647,7 +1647,7 @@ Wire Wire Line
 	6500 2700 6800 2700
 Text Label 6550 2700 0    50   ~ 0
 ADC_D
-Text Notes 1650 7450 0    39   Italic 0
+Text Notes 1950 6650 0    39   Italic 0
 any P-CH Mosfet with\nVgs(th)max<2V, low Rds(on)\n-PMV100EPAR\n-NXV90EPR\n-SI2343CDS-T1-GE3\n-SI2307CDS-T1-E3\n-CPH3351-TL-W
 Text Notes 3600 6850 0    50   Italic 0
 R1-R10 high grade 0.1% resistors
@@ -1700,8 +1700,8 @@ Wire Wire Line
 	1100 5950 900  5950
 Text Label 900  5950 0    50   ~ 0
 3.0V
-Text Notes 500  6950 0    50   Italic 0
-any low-offset (<0.1mV),\nhigh output current OpAmp\n*high CLoad drive*\nOPA388, NCS2005 (light capacitive load)\nOPA350EA (up to 1µF, MSOP-8 pkg)\nLM8261 (unlimited capacitive load, lower precision)
+Text Notes 500  7000 0    50   Italic 0
+any low-offset (<0.1mV),\nhigh output current OpAmp\n*high CLoad drive*\nOPA388, NCS2005 (light capacitive load)\nOPA350EA/OP1177ARM (up to 1µF, MSOP-8 pkg)\nLM8261 (unlimited capacitive load, lower precision)
 $Comp
 L Device:C_Small C101
 U 1 1 6205B8F8
