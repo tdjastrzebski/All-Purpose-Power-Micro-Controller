@@ -6,13 +6,13 @@
             "type": "cortex-debug",
             "request": "launch",
             "servertype": "openocd",
-            "cwd": "${workspaceRoot}/BUILD/debug",
-            "executable": "${workspaceRoot}/BUILD/debug/${workspaceRootFolderName}.elf",
-            "svdFile": "${workspaceRoot}/STM32G0B1.svd",
+            "cwd": "${workspaceRoot}",
+            "executable": "BUILD/debug/${workspaceRootFolderName}.elf",
+            "svdFile": "STM32G0B1.svd",
             "runToMain": true,
             "device": "STM32G0B1CEUx",
             "searchDir": [
-                "C:/Program Files/OpenOCD/scripts"
+                "${env:OpenOCD}/scripts"
             ],
             "configFiles": [
                 "/interface/stlink.cfg",
@@ -39,10 +39,10 @@
             "request": "launch",
             "servertype": "pyocd",
             "cwd": "${workspaceRoot}",
-            "executable": "${workspaceRoot}/BUILD/debug/${workspaceRootFolderName}.elf",
+            "executable": "BUILD/debug/${workspaceRootFolderName}.elf",
             "device": "STM32G0B1",
             "targetId": "STM32G0B1CEUx",
-            "svdFile": "${workspaceRoot}/STM32G0B1.svd",
+            "svdFile": "STM32G0B1.svd",
             "runToMain": true,
             "interface": "swd"
         },
@@ -54,7 +54,7 @@
             "miDebuggerPath": "arm-none-eabi-gdb",
             "debugServerPath": "pyocd",
             "debugServerArgs": "gdbserver -t STM32G0B1CEUx",
-            "program": "${workspaceRoot}/BUILD/debug/${workspaceRootFolderName}.elf",
+            "program": "BUILD/debug/${workspaceRootFolderName}.elf",
             "args": [],
             "stopAtEntry": true,
             "cwd": "${workspaceRoot}",
@@ -114,10 +114,10 @@
             "request": "launch",
             "servertype": "stutil",
             "cwd": "${workspaceRoot}",
-            "executable": "./BUILD/debug/${workspaceRootFolderName}.elf",
+            "executable": "BUILD/debug/${workspaceRootFolderName}.elf",
             "device": "STM32G0B1",
             "v1": false,
-            "svdFile": "${workspaceRoot}/STM32G0B1.svd",
+            "svdFile": "STM32G0B1.svd",
             "preLaunchTask": "Build & Deploy"
         }
     ]

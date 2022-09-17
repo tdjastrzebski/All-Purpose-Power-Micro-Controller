@@ -28,7 +28,7 @@
             "command": "st-link_cli",
             "args": [
                 "-P",
-                "${workspaceRoot}/BUILD/debug/${workspaceRootFolderName}.bin",
+                "BUILD/debug/${workspaceRootFolderName}.bin",
                 "0x08000000",
                 "-V",
                 "-HardRst"
@@ -51,7 +51,7 @@
             "command": "pyocd",
             "args": [
                 "flash",
-                "${workspaceRoot}/BUILD/debug/${workspaceRootFolderName}.bin",
+                "BUILD/debug/${workspaceRootFolderName}.bin",
                 "--base-address",
                 "0x08000000",
                 "--target",
@@ -75,7 +75,7 @@
             "command": "pyocd",
             "args": [
                 "flash",
-                "${workspaceRoot}/BUILD/release/${workspaceRootFolderName}.bin",
+                "BUILD/release/${workspaceRootFolderName}.bin",
                 "--base-address",
                 "0x08000000",
                 "--target",
@@ -143,12 +143,10 @@
         },
         {
             // Requires: npm install -g @serialport/terminal
-            "label": "Serial terminal COM3",
+            "label": "Serial terminal",
             "type": "shell",
             "command": "serialport-terminal",
             "args": [
-                "-p",
-                "COM3",
                 "-b",
                 "115200"
             ],
