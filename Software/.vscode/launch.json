@@ -6,7 +6,7 @@
             "type": "cortex-debug",
             "request": "launch",
             "servertype": "openocd",
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceFolder}",
             "executable": "BUILD/debug/${workspaceRootFolderName}.elf",
             "svdFile": "STM32G0B1.svd",
             "runToMain": true,
@@ -38,7 +38,7 @@
             "type": "cortex-debug",
             "request": "launch",
             "servertype": "pyocd",
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceFolder}",
             "executable": "BUILD/debug/${workspaceRootFolderName}.elf",
             "device": "STM32G0B1",
             "targetId": "STM32G0B1CEUx",
@@ -57,7 +57,7 @@
             "program": "BUILD/debug/${workspaceRootFolderName}.elf",
             "args": [],
             "stopAtEntry": true,
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "serverLaunchTimeout": 20000,
@@ -66,7 +66,7 @@
             "serverStarted": "GDB\\ server\\ started",
             "setupCommands": [
                 {
-                    "text": "-environment-cd ${workspaceRoot}\\BUILD\\debug"
+                    "text": "-environment-cd ${workspaceFolder}\\BUILD\\debug"
                 },
                 {
                     "text": "-target-select remote localhost:3333",
@@ -113,7 +113,7 @@
             "type": "cortex-debug",
             "request": "launch",
             "servertype": "stutil",
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceFolder}",
             "executable": "BUILD/debug/${workspaceRootFolderName}.elf",
             "device": "STM32G0B1",
             "v1": false,
