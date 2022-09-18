@@ -11,7 +11,7 @@
 * `pyocd pack install STM32G0B1CEUx`
 ## OpenOCD
 * Download the latest version from https://github.com/xpack-dev-tools/openocd-xpack/releases
-or build yourself following [this guide](https://github.com/Marus/cortex-debug/wiki/How-to-build-current-OpenOCD-version-on-Windows)
+or build it yourself following [this guide](https://github.com/Marus/cortex-debug/wiki/How-to-build-current-OpenOCD-version-on-Windows)
 * Unzip it to `OpenOCD` folder in `C:\Program Files`
 * Set `OpenOCD` system variable to 'C:\Program Files\OpenOCD'
 * Add `%OpenOCD%\bin` to system PATH variable
