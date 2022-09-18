@@ -9,7 +9,7 @@
             "cwd": "${workspaceFolder}",
             "executable": "BUILD/debug/${workspaceRootFolderName}.elf",
             "svdFile": "STM32G0B1.svd",
-            "runToMain": true,
+            "runToEntryPoint": "main",
             "device": "STM32G0B1CEUx",
             "searchDir": [
                 "${env:OpenOCD}/scripts"
@@ -43,7 +43,7 @@
             "device": "STM32G0B1",
             "targetId": "STM32G0B1CEUx",
             "svdFile": "STM32G0B1.svd",
-            "runToMain": true,
+            "runToEntryPoint": "main",
             "interface": "swd"
         },
         {
@@ -117,6 +117,7 @@
             "executable": "BUILD/debug/${workspaceRootFolderName}.elf",
             "device": "STM32G0B1",
             "v1": false,
+            "runToEntryPoint": "main",
             "svdFile": "STM32G0B1.svd",
             "preLaunchTask": "Build & Deploy"
         }
