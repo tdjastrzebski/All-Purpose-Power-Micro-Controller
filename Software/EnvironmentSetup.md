@@ -15,6 +15,7 @@ or build it yourself following [this guide](https://github.com/Marus/cortex-debu
 * Unzip it to `OpenOCD` folder in `C:\Program Files`
 * Set `OpenOCD` system variable to 'C:\Program Files\OpenOCD'
 * Add `%OpenOCD%\bin` to system PATH variable
+* Set `XDG_CACHE_HOME` env variable to `%USERPROFILE%\AppData\Local\Temp` to prevent symbol cache path error
 > Note: xpm utility does not really support global installations (yet), hence I suggest the above approach.
 ## SVD file - MPU specific
 Download from https://github.com/posborne/cmsis-svd/tree/master/data/STMicro and place in the Software root folder.
