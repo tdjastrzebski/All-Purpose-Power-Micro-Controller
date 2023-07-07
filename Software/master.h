@@ -1,5 +1,5 @@
 /*---------------------------------------------------------------------------------------------
- *  Copyright (c) 2022 Tomasz Jastrzębski. All rights reserved.
+ *  Copyright (c) 2022-2023 Tomasz Jastrzębski. All rights reserved.
  *  Licensed under the MIT License. See License.md in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 

@@ -1,13 +1,8 @@
 // Place your settings in this file to overwrite default and user settings.
 {
     "C_Cpp.addWorkspaceRootToIncludePath": false,
-    "C_Cpp.intelliSenseEngine": "Default",
-    "terminal.integrated.automationShell.windows": "C:/Program Files/Git/bin/bash.exe",
     "files.associations": {
-        "*.json": "jsonc",
-        "*.h": "c",
-        "*.c": "c",
-        "cstdlib": "cpp"
+        "*.json": "jsonc"
     },
     "cmake.configureOnOpen": false,
     "C_Cpp.clang_format_style": "{BasedOnStyle: Google, IndentWidth: 4, IndentCaseLabels: false, TabWidth: 4, UseTab: ForIndentation, ColumnLimit: 0}",

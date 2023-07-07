@@ -4,8 +4,8 @@
         {
             "name": "gcc",
             "intelliSenseMode": "gcc-arm",
-            "cStandard": "c11",
-            "cppStandard": "c++14",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
             "compilerPath": "${env:MBED_GCC_ARM_PATH}/arm-none-eabi-g++.exe",
             "forcedInclude": [
             ],
