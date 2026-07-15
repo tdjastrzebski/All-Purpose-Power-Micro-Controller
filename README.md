@@ -1,5 +1,7 @@
 # All-purpose Power Micro Controller
 
+> Note: new, redesigned verion is in works: https://github.com/tdjastrzebski/All-Purpose-Micro-Controller-2
+ 
 This general purpose power micro controller features:
 * Wheatstone Bridge front-end
 * New Texas Instruments [INA823](https://www.ti.com/product/INA823) instrumentation amplifier (see schematic for alternatives)
